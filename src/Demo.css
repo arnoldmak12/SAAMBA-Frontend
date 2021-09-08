@@ -1,0 +1,11 @@
+div.loading-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+div.loading-text-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
