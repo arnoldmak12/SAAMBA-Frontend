@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { GridLoader } from "react-spinners";
 import "./Demo.css";
-
+import {Link } from "react-router-dom";
 function App() {
     let [loading, setLoading] = useState(true);
 
@@ -37,10 +37,22 @@ function App() {
             
         </div>
   ) : (
-      <div className="d-flex twitter-blue justify-content-center align-items-center text-center content-body">
+  <div>
+      <div className="d-flex twitter-blue justify-content-center align-items-center text-center">
                 
-          <iframe src="https://open.spotify.com/embed/playlist/0uDRLbIwYKGesH0x9iQoT7" width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src="https://open.spotify.com/embed/playlist/0uDRLbIwYKGesH0x9iQoT7" width="100%" height="600" frameBorder="0" transparency="true" allow="encrypted-media"></iframe>
+
       </div>
+      <div className="d-flex twitter-blue justify-content-center align-items-center text-center" >
+              <p style={{marginTop: "50px"}}>
+                <Link to ="/"><button className="btn-blue"> Try Another Twitter Profile! </button>
+                </Link>
+                <button style={{marginLeft: "50px"}} className="btn-blue"> Add this playlist to my Spotify account </button>
+              </p>
+      </div>
+  </div>
+
+
   );
 }
 
