@@ -1,10 +1,36 @@
 import './Home.css';
-import React from "react";
-
+import React, {useState} from "react";
 function App() {
-    const handleDemo = () => {
-        window.location = "demo";
+    const [handle, setHandle] = useState(" ");
+    const url = "http://localhost:5000/api?";
+    const HandleDemo = () => {
+        fetch(url + new URLSearchParams({
+            user: handle
+        }), {mode: 'cors'}).then((res) => {
+            if(res.status == 200){window.open(url + "user=" + handle);
+            return fetch(url + "user=" + handle).then((response) => response.json())
+            .then((responseJson) => {
+              console.log(responseJson.tweet);
+            })
+            .catch((error) => {
+              console.error(error);
+            })
+    }})
+        
+        //window.location = "demo";
     };
+
+
+    const handleInput = event => {
+        setHandle(event.target.value);
+    }
+
+    // async function componentDidMount() {
+    //     const response = await fetch('/api/groups');
+    //     const body = await response.json();
+    //     this.setState({ groups: body, isLoading: false });
+    // }
+
   return (
     <div>
             <div className="d-flex twitter-blue justify-content-center align-items-center text-center content-body">
@@ -14,9 +40,10 @@ function App() {
                     <h3 className="px-3">
                         Enter your twitter handle
                     </h3>
-                    <input className="handle-input"></input>
+                    <input className="handle-input" onChange = {handleInput}>
+                    </input>
                     <div className="text-center">
-                        <button className="btn-blue" onClick={handleDemo}>
+                        <button className="btn-blue" onClick={HandleDemo}>
                             {" "}
                             Make my playlist{" "}
                         </button>
