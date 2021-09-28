@@ -2,15 +2,13 @@ import './Home.css';
 import React, {useState} from "react";
 function App() {
     const [handle, setHandle] = useState(" ");
-    const url = "http://localhost:5000/api?";
+    const url = "http://localhost:8080/getPlaylist/";
     const HandleDemo = () => {
-        fetch(url + new URLSearchParams({
-            user: handle
-        }), {mode: 'cors'}).then((res) => {
-            if(res.status == 200){window.open(url + "user=" + handle);
-            return fetch(url + "user=" + handle).then((response) => response.json())
+        fetch((url + handle), {mode: 'cors'}).then((res) => {
+            if(res.status == 200){window.open(url + handle);
+            return fetch(url + handle).then((response) => response.json())
             .then((responseJson) => {
-              console.log(responseJson.tweet);
+              //return songs and artists
             })
             .catch((error) => {
               console.error(error);
@@ -19,7 +17,6 @@ function App() {
         
         //window.location = "demo";
     };
-
 
     const handleInput = event => {
         setHandle(event.target.value);

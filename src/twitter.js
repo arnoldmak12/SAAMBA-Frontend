@@ -17,7 +17,12 @@ var client = new Twit({
     client.get('users/show', { screen_name: req.query.user , tweet_mode: 'extended'},  function (err, data, response) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-      res.send({tweet: data.status.full_text})
+      if(data.errors!==undefined && data.errors[0].code == 50){
+        res.send({error: data.errors[0].message})
+      }else{
+        res.send({tweet: data.status.full_text})
+      }
+      
     })
     
   })
