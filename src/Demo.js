@@ -6,7 +6,7 @@ import "./Demo.css";
 
 function Playlist(props) {
     let [loading, setLoading] = useState(true);
-    //console.log(props)
+    console.log(props)
     useEffect(
       () => {
         let timer1 = setTimeout(() => setLoading(false), 3000);
