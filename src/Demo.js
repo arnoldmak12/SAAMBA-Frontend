@@ -6,7 +6,7 @@ import "./Demo.css";
 
 function Playlist(props) {
     let [loading, setLoading] = useState(true);
-    console.log(props)
+    //console.log(props)
     useEffect(
       () => {
         let timer1 = setTimeout(() => setLoading(false), 3000);
@@ -43,11 +43,17 @@ function Playlist(props) {
   (
     <div className="d-flex twitter-blue justify-content-center text-center content-body">
       <h1 className = "playlist-ready">Your playlist is ready!</h1>
-      {/* {
-          props.uris.map((uri) => 
-          <iframe src= {"https://open.spotify.com/embed/track/" + uri} width="50%" height="80" align = "right" frameBorder="0"
-          allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>)
-      } */}
+      {
+        props.location.state.uris.map((uri) => 
+        {
+          uri.replace("spotify:track:", ""),
+        }
+        
+        // uri = "https://open.spotify.com/embed/track/" + uri,
+        // <iframe src = {uri} width="50%" height="80" align = "right" frameBorder="0"
+        // allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; 
+        // fullscreen; picture-in-picture"></iframe>
+        )}
     </div>
     
     // 
