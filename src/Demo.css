@@ -9,3 +9,13 @@ div.loading-text-container{
   justify-content: center;
   margin-top: 3%;
 }
+
+div.playlist-container{
+  display: flexbox;
+}
+
+div.track-element {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+}

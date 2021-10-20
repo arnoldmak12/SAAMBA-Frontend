@@ -42,14 +42,16 @@ function Playlist(props) {
   
   (
     <div className="d-flex twitter-blue justify-content-center text-center content-body">
+
+
+      <div className="playlist-container">
       <h1 className = "playlist-ready">Your playlist is ready!</h1>
-      <br/>
       {
         props.location.state.uris.map((uri) => 
         {
           return(
-          <div>
-            <iframe src = {"https://open.spotify.com/embed/track/" + uri.substring(14)} width="50%" height="80" align = "right" frameBorder="0"
+          <div className="track-element">
+            <iframe style={{display: 'block'}} src = {"https://open.spotify.com/embed/track/" + uri.substring(14)} width="100%" height="80" align = "right" frameBorder="0"
         allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; 
         fullscreen; picture-in-picture"></iframe>
           
@@ -60,6 +62,7 @@ function Playlist(props) {
         // uri =  + uri,
         
         )}
+        </div>
     </div>
     
     // 
