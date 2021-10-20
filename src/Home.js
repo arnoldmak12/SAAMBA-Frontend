@@ -1,21 +1,26 @@
 import './Home.css';
+import './Demo.js';
+import Playlist from './Demo.js'
 import React, {useState} from "react";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+
 function App() {
     const [handle, setHandle] = useState(" ");
-    const url = "http://localhost:8080/getPlaylist/";
+    const url = "http://50.19.22.132:8080/getPlaylist/";
     const HandleDemo = () => {
+        // return <Link to={{
+        //     pathname: '/demo'
+        //   }} />
         fetch((url + handle), {mode: 'cors'}).then((res) => {
-            if(res.status == 200){window.open(url + handle);
             return fetch(url + handle).then((response) => response.json())
             .then((responseJson) => {
-              //return songs and artists
+
             })
             .catch((error) => {
               console.error(error);
             })
-    }})
-        
-        //window.location = "demo";
+    })
+    window.location = "demo";
     };
 
     const handleInput = event => {

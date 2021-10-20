@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
+import { Component } from "react";
 import { GridLoader } from "react-spinners";
+import './Home.css';
 import "./Demo.css";
 
-function App() {
+function Playlist(props) {
     let [loading, setLoading] = useState(true);
-
+    console.log(props)
     useEffect(
       () => {
         let timer1 = setTimeout(() => setLoading(false), 3000);
@@ -36,12 +38,20 @@ function App() {
             </div>
             
         </div>
-  ) : (
-      <div className="d-flex twitter-blue justify-content-center align-items-center text-center content-body">
-                
-          <iframe src="https://open.spotify.com/embed/playlist/0uDRLbIwYKGesH0x9iQoT7" width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-      </div>
+  ) : 
+  
+  (
+    <div className="d-flex twitter-blue justify-content-center text-center content-body">
+      <h1 className = "playlist-ready">Your playlist is ready!</h1>
+      {/* {
+          props.uris.map((uri) => 
+          <iframe src= {"https://open.spotify.com/embed/track/" + uri} width="50%" height="80" align = "right" frameBorder="0"
+          allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>)
+      } */}
+    </div>
+    
+    // 
   );
 }
 
-export default App;
+export default Playlist;
