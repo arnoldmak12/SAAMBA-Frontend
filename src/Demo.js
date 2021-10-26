@@ -7,6 +7,22 @@ import "./Demo.css";
 function Playlist(props) {
     let [loading, setLoading] = useState(true);
     //console.log(props)
+    let handle = props.location.state.handle;
+    const url = "http://50.19.22.132:8080/getPlaylist/";
+    const [uris, setUris] = useState([]);
+    const [clicked, setClicked] = useState (false);
+    const HandleDemo = async () => {
+        await fetch((url + handle), {mode: 'cors'}).then((res) => {
+            return fetch (url + handle).then((response) => response.json())
+            .then((responseJson) => {
+                setUris(responseJson)
+            })
+            .catch((error) => {
+              console.error(error);
+            })
+        })
+    // window.location = "demo";
+    };
     useEffect(
       () => {
         let timer1 = setTimeout(() => setLoading(false), 3000);
@@ -62,8 +78,22 @@ function Playlist(props) {
         // uri =  + uri,
         
         )}
+        <button className="btn-black">
+                            {" "}
+                            Back{" "}
+                        </button>
+        <button className="btn-green">
+            {" "}
+            Add Playlist to Spotify{" "}
+        </button>
         </div>
+        
+        <div>
+        
+        </div>
+        
     </div>
+    
     
     // 
   );

@@ -36,7 +36,7 @@ function App() {
 
   return clicked? <Redirect to={{
     pathname: '/demo',
-    state: { uris: uris }
+    state: { uris: uris}
 }}
 />:(
     <div>
