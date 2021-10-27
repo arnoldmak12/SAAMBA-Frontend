@@ -48,7 +48,7 @@ function App() {
                     <input className="handle-input" onChange = {handleInput}>
                     </input>
                     <div className="text-center">
-                        <button className="btn-blue" onClick={HandleDemo}>
+                        <button className="btn blue" onClick={HandleDemo}>
                             {" "}
                             Make my playlist{" "}
                         </button>

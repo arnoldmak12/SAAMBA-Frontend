@@ -62,7 +62,7 @@
     margin: 10px;
 }
 
-.btn-blue {
+.btn {
     background-color: #F5F8FA !important;
     font-size: 14px;
     /* color: white; */
@@ -91,8 +91,18 @@
     /* border: 1px solid transparent; */
 }
 
-.btn-blue:hover{
-    background-color: #1DA1F2 !important;
+.blue:hover{
+  background-color: #1DA1F2 !important;
+}
+
+.black:hover{
+  background-color: #000000 !important;
+  color: white;
+}
+
+.green:hover{
+  background-color: #1ED760 !important;
+  color: black;
 }
 
 .twitter-blue {

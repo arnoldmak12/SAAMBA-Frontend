@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Component } from "react";
 import { GridLoader } from "react-spinners";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import './Home.css';
 import "./Demo.css";
 
@@ -24,7 +25,8 @@ function Playlist(props) {
         },
         )
       },
-      []
+      [],
+      
     );
 
   return loading ? (
@@ -63,7 +65,19 @@ function Playlist(props) {
         // uri =  + uri,
         
         )}
+        <div>
+                      <button className="btn black" onClick = {() => {window.location = "/"}}>
+                                          {" "}
+                                          Back to Home{" "}
+                                      </button>
+                        <button className="btn green">
+                            {" "}
+                            Add to Spotify{" "}
+                        </button>
         </div>
+        
+        </div>
+        
     </div>
     
     // 
