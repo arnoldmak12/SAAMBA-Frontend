@@ -16,6 +16,17 @@ div.playlist-container{
 
 div.track-element {
   display: flex;
-  margin-bottom: 20px;
+  margin-top: 20px;
   justify-content: center;
 }
+
+.float-container {
+  padding: 20px;
+}
+
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  padding-top: 0;
+}  

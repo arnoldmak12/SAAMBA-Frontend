@@ -48,7 +48,8 @@ function Playlist(props) {
 
 
       <div className="playlist-container">
-      <h1 className = "playlist-ready">Your playlist is ready!</h1>
+      {/* <h1 className = "playlist-ready">Your playlist is ready!</h1> */}
+      <h1 className="title-medium mt-5" style={{color: "#1ED760"}}>Your playlist is ready!</h1>
       {
         uris.map((uri) => 
         {
@@ -65,15 +66,22 @@ function Playlist(props) {
         // uri =  + uri,
         
         )}
-        <div>
-                      <button className="btn black" onClick = {() => {window.location = "/"}}>
-                                          {" "}
-                                          Back to Home{" "}
-                                      </button>
-                        <button className="btn green">
+        <div class="float-container">
+          <div class="float-child">
+            <button className="btn black" onClick = {() => {window.location = "/"}}>
+                            {" "}
+                            Back to Home{" "}
+                        </button>
+          </div>
+
+          <div class="float-child">
+            <button className="btn green">
                             {" "}
                             Add to Spotify{" "}
                         </button>
+          </div>
+            
+            
         </div>
         
         </div>
