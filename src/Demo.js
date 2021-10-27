@@ -6,23 +6,24 @@ import "./Demo.css";
 
 function Playlist(props) {
     let [loading, setLoading] = useState(true);
-    //console.log(props)
+    let handle = props.location.state.handle;
+    const url = "http://50.19.22.132:8080/getPlaylist/";
+    const [uris, setUris] = useState([]);
     useEffect(
-      () => {
-        let timer1 = setTimeout(() => setLoading(false), 3000);
-  
-        // this will clear Timeout
-        // when component unmount like in willComponentUnmount
-        // and show will not change to true
-        return () => {
-          clearTimeout(timer1);
-        };
+      
+      async () => {
+        await fetch((url + handle), {mode: 'cors'}).then((res) => {
+            return fetch (url + handle).then((response) => response.json())
+            .then((responseJson) => {
+                setUris(responseJson)
+                setLoading(false)
+            })
+            .catch((error) => {
+              console.error(error);
+            })
+        },
+        )
       },
-      // useEffect will run only one time with empty []
-      // if you pass a value to array,
-      // like this - [data]
-      // than clearTimeout will run every time
-      // this value changes (useEffect re-run)
       []
     );
 
@@ -47,7 +48,7 @@ function Playlist(props) {
       <div className="playlist-container">
       <h1 className = "playlist-ready">Your playlist is ready!</h1>
       {
-        props.location.state.uris.map((uri) => 
+        uris.map((uri) => 
         {
           return(
           <div className="track-element">

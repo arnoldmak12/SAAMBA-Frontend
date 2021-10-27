@@ -7,19 +7,17 @@ import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom
 function App() {
     const [handle, setHandle] = useState(" ");
     const [clicked, setClicked] = useState (false);
-    const [uris, setUris] = useState([]);
-    const url = "http://50.19.22.132:8080/getPlaylist/";
     const HandleDemo = async () => {
-        await fetch((url + handle), {mode: 'cors'}).then((res) => {
-            return fetch (url + handle).then((response) => response.json())
-            .then((responseJson) => {
-                setUris(responseJson)
-            })
-            .catch((error) => {
-              console.error(error);
-            })
-        })
-        console.log(uris)
+        // await fetch((url + handle), {mode: 'cors'}).then((res) => {
+        //     return fetch (url + handle).then((response) => response.json())
+        //     .then((responseJson) => {
+        //         setUris(responseJson)
+        //     })
+        //     .catch((error) => {
+        //       console.error(error);
+        //     })
+        // })
+        // console.log(uris)
         setClicked(true)
     // window.location = "demo";
     };
@@ -36,7 +34,7 @@ function App() {
 
   return clicked? <Redirect to={{
     pathname: '/demo',
-    state: { uris: uris }
+    state: {handle: handle}
 }}
 />:(
     <div>
