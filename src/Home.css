@@ -15,8 +15,9 @@
   }
 }
 
+
 .App-header {
-  background-color: #282c34;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,7 +28,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: whitesmoke;
 }
 
 @keyframes App-logo-spin {
@@ -40,8 +41,12 @@
 }
 
 * {
-    background-color: #F5F8FA;
     font-family: 'Poppins', sans-serif;
+}
+
+.background{
+  background:linear-gradient(transparent, white);
+  background-color:#1DA1F2;
 }
 
 .title-medium {
@@ -49,8 +54,7 @@
     font-style: normal;
     font-weight: bold;
     font-size: 5rem;
-
-    color: #1DA1F2;
+    color:whitesmoke;
     text-shadow: -5px 5px 0px #000000;
 }
 
@@ -93,6 +97,7 @@
 
 .blue:hover{
   background-color: #1DA1F2 !important;
+  color:white
 }
 
 .black:hover{
@@ -105,9 +110,6 @@
   color: black;
 }
 
-.twitter-blue {
-    background-color: #F5F8FA !important;
-}
 
 .bold{
     font-family: Poppins;

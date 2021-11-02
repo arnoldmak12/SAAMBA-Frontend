@@ -3,10 +3,12 @@ import './Demo.js';
 import Playlist from './Demo.js'
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import Particles from "react-particles-js";
 
 function App() {
     const [handle, setHandle] = useState(" ");
     const [clicked, setClicked] = useState (false);
+    const defInput = "Enter a Twitter handle";
     const HandleDemo = async () => {
         // await fetch((url + handle), {mode: 'cors'}).then((res) => {
         //     return fetch (url + handle).then((response) => response.json())
@@ -23,6 +25,9 @@ function App() {
     };
 
     const handleInput = event => {
+        if(event.target.value == defInput){
+            setHandle("");
+        }
         setHandle(event.target.value);
     }
 
@@ -37,16 +42,14 @@ function App() {
     state: {handle: handle}
 }}
 />:(
-    <div>
-            <div className="d-flex twitter-blue justify-content-center align-items-center text-center content-body">
+        <div className = "background">  
+            <div className="d-flex justify-content-center align-items-center text-center content-body">
                 <div>
                     <h1 className="title-medium mt-5">saamba</h1>
                     <h2 className="bold">A spotify playlist generator based on your tweets</h2>
-                    <h3 className="px-3">
-                        Enter your twitter handle
-                    </h3>
-                    <input className="handle-input" onChange = {handleInput}>
-                    </input>
+                    <div>
+                        <input className="handle-input" defaultValue = {defInput} onChange = {handleInput}></input>
+                    </div>
                     <div className="text-center">
                         <button className="btn blue" onClick={HandleDemo}>
                             {" "}
