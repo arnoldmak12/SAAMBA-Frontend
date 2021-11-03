@@ -4,6 +4,7 @@ import Playlist from './Demo.js'
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import Particles from "react-particles-js";
+import logo from './logo.png';
 
 function App() {
     const [handle, setHandle] = useState(" ");
@@ -45,6 +46,7 @@ function App() {
         <div className = "background">  
             <div className="d-flex justify-content-center align-items-center text-center content-body">
                 <div>
+                    <img src={logo} style={{width:"20%", height:"20%"}}/>
                     <h1 className="title-medium mt-5">saamba</h1>
                     <h2 className="bold">A spotify playlist generator based on your tweets</h2>
                     <div>
