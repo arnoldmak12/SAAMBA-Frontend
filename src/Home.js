@@ -5,6 +5,7 @@ import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import Particles from "react-particles-js";
 
+
 function App() {
     const [handle, setHandle] = useState(" ");
     const [clicked, setClicked] = useState (false);
@@ -42,22 +43,60 @@ function App() {
     state: {handle: handle}
 }}
 />:(
-        <div className = "background">  
-            <div className="d-flex justify-content-center align-items-center text-center content-body">
+        <div style = {{width: "100vw", height: "100vh"}}>  
+            <Particles id="particle-canvas"
+            params={{
+                particles: {
+                    number: {
+                        value: 300,
+                        density: {
+                            enable: true,
+                            value_area: 1000
+                        }
+                    },
+                    color: {
+                        value: '#fff'
+                    },
+                    opacity: {
+                        value: 0.5,
+                        anim: {
+                            enable: true
+                        }
+                    },
+                    size: {
+                        value: 5,
+                        random: true,
+                        anim: {
+                            enable: false
+                        }
+                    },
+                    line_linked: {
+                        enable: false
+                    },
+                    move: {
+                        speed: 0.3
+                    }
+                 }    
+            }}    
+        />
+            <div className = "d-flex twitter-blue justify-content-center align-items-center text-center content-body">
                 <div>
-                    <h1 className="title-medium mt-5">saamba</h1>
+                <h1 className="title-medium mt-5">saamba</h1>
                     <h2 className="bold">A spotify playlist generator based on your tweets</h2>
                     <div>
                         <input className="handle-input" defaultValue = {defInput} onChange = {handleInput}></input>
                     </div>
                     <div className="text-center">
                         <button className="btn blue" onClick={HandleDemo}>
-                            {" "}
+                            {" "}            
                             Make my playlist{" "}
                         </button>
                     </div>
-                </div>
+                </div> 
+                    
             </div>
+            
+            
         </div>
   );
 }
