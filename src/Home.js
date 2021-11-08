@@ -3,7 +3,7 @@ import './Demo.js';
 import Playlist from './Demo.js'
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
-import Particles from "react-particles-js";
+import Particles from "react-tsparticles";
 
 
 function App() {
@@ -26,17 +26,10 @@ function App() {
     };
 
     const handleInput = event => {
-        if(event.target.value == defInput){
-            setHandle("");
-        }
         setHandle(event.target.value);
-    }
+    };
 
-    // async function componentDidMount() {
-    //     const response = await fetch('/api/groups');
-    //     const body = await response.json();
-    //     this.setState({ groups: body, isLoading: false });
-    // }
+
 
   return clicked? <Redirect to={{
     pathname: '/demo',
@@ -44,51 +37,16 @@ function App() {
 }}
 />:(
         <div style = {{width: "100vw", height: "100vh"}}>  
-            <Particles id="particle-canvas"
-            params={{
-                particles: {
-                    number: {
-                        value: 300,
-                        density: {
-                            enable: true,
-                            value_area: 1000
-                        }
-                    },
-                    color: {
-                        value: '#fff'
-                    },
-                    opacity: {
-                        value: 0.5,
-                        anim: {
-                            enable: true
-                        }
-                    },
-                    size: {
-                        value: 5,
-                        random: true,
-                        anim: {
-                            enable: false
-                        }
-                    },
-                    line_linked: {
-                        enable: false
-                    },
-                    move: {
-                        speed: 0.3
-                    }
-                 }    
-            }}    
-        />
+            <ParticlesBackground></ParticlesBackground>
             <div className = "d-flex twitter-blue justify-content-center align-items-center text-center content-body">
                 <div>
                 <h1 className="title-medium mt-5">saamba</h1>
                     <h2 className="bold">A spotify playlist generator based on your tweets</h2>
                     <div>
-                        <input className="handle-input" defaultValue = {defInput} onChange = {handleInput}></input>
+                        <input className="handle-input" placeholder = "Enter a Twitter handle" onChange = {handleInput}></input>
                     </div>
                     <div className="text-center">
-                        <button className="btn blue" onClick={HandleDemo}>
-                            {" "}            
+                        <button className="btn blue" onClick={HandleDemo}>          
                             Make my playlist{" "}
                         </button>
                     </div>
@@ -101,4 +59,85 @@ function App() {
   );
 }
 
+class ParticlesBackground extends React.Component{
+    render(){
+        return <Particles
+        id="particle-canvas"
+        options={{
+            "autoPlay": true,
+            "fullScreen": {
+              "enable": true,
+              "zIndex": 1
+            },
+            "detectRetina": true,
+            "duration": 0,
+            "fpsLimit": 60,
+            "manualParticles": [],
+            "motion": {
+              "disable": false,
+              "reduce": {
+                "factor": 4,
+                "value": true
+              }
+            },
+            "particles": {
+              "color": {
+                "value": "#fff",
+              },
+              "move": {
+                "angle": {
+                  "offset": 0,
+                  "value": 90
+                },
+                "direction": "bottom",
+                "enable": true,
+                "outModes": {
+                  "default": "out",
+                  "bottom": "out",
+                  "left": "out",
+                  "right": "out",
+                  "top": "out"
+                },
+                "speed": 2,
+              },
+              "number": {
+                "density": {
+                  "enable": true,
+                  "area": 800,
+                  "factor": 1000
+                },
+                "limit": 0,
+                "value": 400
+              },
+              "opacity": {
+                "random": {
+                  "enable": true,
+                  "minimumValue": 0.1
+                },
+                "value": {
+                  "min": 0.1,
+                  "max": 0.5
+                },
+              },
+              "shape": {
+                "type": "circle"
+              },
+              "size": {
+                "random": {
+                  "enable": true,
+                  "minimumValue": 1
+                },
+                "value": {
+                  "min": 1,
+                  "max": 10
+                },
+              },
+            },
+            "pauseOnBlur": true,
+            "pauseOnOutsideViewport": true,
+            "zLayers": 100
+          }}
+      />
+    }
+}
 export default App;

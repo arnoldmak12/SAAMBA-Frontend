@@ -4,7 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AppRouter from "./AppRouter";
-import Particles from "react-particles-js";
+import ParticlesBackground from "./Home.js";
 
 ReactDOM.render(
   <React.StrictMode>

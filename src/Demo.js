@@ -18,8 +18,8 @@ function Playlist(props) {
       await fetch((url + handle), { mode: 'cors' }).then((res) => {
         return fetch(url + handle).then((response) => response.json())
           .then((responseJson) => {
-            console.log(responseJson.status)
-            if (responseJson.status == 200) {
+            console.log(res)
+            if (res.status == 200) {
               setUris(responseJson)
               setLoading(false)
             }
