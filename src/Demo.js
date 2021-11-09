@@ -5,39 +5,49 @@ import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom
 import './Home.css';
 import "./Demo.css";
 
+var axios = require('axios').default;
 
 function Playlist(props) {
   let [loading, setLoading] = useState(true);
-  let handle = props.location.state.handle;
+  let handle = props.location.state!=null ? props.location.state.handle : "";
   const url = "http://50.19.22.132:8080/getPlaylist/";
-  const [uris, setUris] = useState([]);
+  const storage = localStorage.getItem("uris");
+  const [emptyStorage, setEmptyStorage] = useState(storage ==null);
+  const [uris, setUris] = useState(emptyStorage? [] : storage.substring(2, storage.length-2).split('","'));
   const [error, setError] = useState(false);
-  useEffect(
 
-    async () => {
-      await fetch((url + handle), { mode: 'cors' }).then((res) => {
-        return fetch(url + handle).then((response) => response.json())
-          .then((responseJson) => {
-            console.log(res)
-            if (res.status == 200) {
-              setUris(responseJson)
-              setLoading(false)
-            }
-            else {
-              setError(true);
-              setLoading(false);
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          })
-      },
-      )
-    },
-    [],
-
+  useEffect(() => {
+    // var result = "";
+    if(emptyStorage){
+      async function f(){
+        await fetch((url + handle), { mode: 'cors' }).then((res) => {
+          return fetch(url + handle).then((response) => response.json())
+            .then((responseJson) => {
+              if (res.status == 200) {
+                setUris(responseJson);
+                setLoading(false);
+              }
+              else {
+                setError(true);
+                setLoading(false);
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            })
+        },
+        )
+      
+    }
+    return f();
+    }
+    else{
+      setLoading(false);
+    }
+     
+    }
   );
-
+  
   // error ? 
   return loading ? (
     <div>
@@ -66,7 +76,6 @@ function Playlist(props) {
           <h1 className="title-medium mt-5" style={{ color: "#1ED760" }}>Your playlist is ready!</h1>
 
           {
-
             uris.map((uri) => {
               return (
                 <div className="track-element">
@@ -90,7 +99,9 @@ function Playlist(props) {
             </div>
 
             <div class="float-child">
-              <button className="btn green">
+              <button className="btn green" onClick={() => { 
+              localStorage.setItem("uris", JSON.stringify(uris)); 
+              window.location = "http://localhost:3005/login"}}>
                 {" "}
                 Add to Spotify{" "}
               </button>

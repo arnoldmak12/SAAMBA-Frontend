@@ -10,7 +10,7 @@ function App() {
     const [handle, setHandle] = useState(" ");
     const [clicked, setClicked] = useState (false);
     const defInput = "Enter a Twitter handle";
-    const HandleDemo = async () => {
+    const handleDemo = () => {
         // await fetch((url + handle), {mode: 'cors'}).then((res) => {
         //     return fetch (url + handle).then((response) => response.json())
         //     .then((responseJson) => {
@@ -46,7 +46,7 @@ function App() {
                         <input className="handle-input" placeholder = "Enter a Twitter handle" onChange = {handleInput}></input>
                     </div>
                     <div className="text-center">
-                        <button className="btn blue" onClick={HandleDemo}>          
+                        <button className="btn blue" onClick={handleDemo}>          
                             Make my playlist{" "}
                         </button>
                     </div>
