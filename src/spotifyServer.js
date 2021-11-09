@@ -28,6 +28,7 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/login', function(req, res) {
     var state = generateRandomString(16);
+    console.log(req.query.uris)
     res.cookie(stateKey, state);
     // your application requests authorization
     var scope = 'playlist-modify-private playlist-modify user-read-private user-read-email user-read-playback-state';

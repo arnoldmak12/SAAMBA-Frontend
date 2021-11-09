@@ -101,7 +101,10 @@ function Playlist(props) {
             <div class="float-child">
               <button className="btn green" onClick={() => { 
               localStorage.setItem("uris", JSON.stringify(uris)); 
-              window.location = "http://localhost:3005/login"}}>
+              var link = "http://localhost:3005/login?uris=" + uris;
+              window.location = link
+              axios.get(link);
+              }}>
                 {" "}
                 Add to Spotify{" "}
               </button>
