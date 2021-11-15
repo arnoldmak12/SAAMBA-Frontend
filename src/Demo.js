@@ -11,12 +11,14 @@ var axios = require('axios').default;
 function Playlist(props) {
   let [loading, setLoading] = useState(true);
   let handle = props.location.state!=null ? props.location.state.handle : "";
-  const url = "http://50.19.22.132:8080/getPlaylist/";
+  const url = "http://localhost:8080/getPlaylist/";
   const storage = localStorage.getItem("uris");
   const [emptyStorage, setEmptyStorage] = useState(storage ==null);
   const [uris, setUris] = useState(emptyStorage? [] : storage.substring(2, storage.length-2).split('","'));
   const [error, setError] = useState(false);
-
+  let params = new URLSearchParams(document.location.search.substring(1));
+  let added1 = params.get("added");
+  const [added, setAdded] = useState(added1=="true")
   useEffect(() => {
     // var result = "";
     if(emptyStorage){
@@ -25,7 +27,7 @@ function Playlist(props) {
           return fetch(url + handle).then((response) => response.json())
             .then((responseJson) => {
               if (res.status == 200) {
-                setUris(responseJson);
+                setUris(responseJson.trackUris);
                 setLoading(false);
               }
               else {
@@ -109,7 +111,17 @@ function Playlist(props) {
 
 
           </div>
-
+{added?
+                        <Popup position="right center" modal>
+                        {close => 
+                          (<div>
+                            <div className=".popup-content">Playlist has been added to your Spotify account!</div>
+                            <button className="close" onClick={close}>
+                              &times;
+                            </button>
+                          </div>)}
+                       </Popup>:""
+}
         </div>
 
       </div>

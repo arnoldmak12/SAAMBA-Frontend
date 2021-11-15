@@ -22,7 +22,7 @@ function App() {
         //     })
         // })
         // console.log(uris)
-        //setClicked(true)
+        setClicked(true)
     // window.location = "demo";
     };
 
@@ -48,16 +48,7 @@ function App() {
                         <input className="handle-input" placeholder = "Enter a Twitter handle" onChange = {handleInput}></input>
                     </div>
                     <div className="text-center">
-                        
-                        <Popup trigger={<button className="btn blue" onClick={handleDemo}> Make my playlist{" "}</button>} position="right center" modal>
-                        {close => 
-                          (<div>
-                            <div className=".popup-content">Playlist has been added to your Spotify account!</div>
-                            <button className="close" onClick={close}>
-                              &times;
-                            </button>
-                          </div>)}
-                       </Popup>
+                        <button className="btn blue" onClick={handleDemo}> Make my playlist{" "}</button>
                     </div>
                 </div> 
               
