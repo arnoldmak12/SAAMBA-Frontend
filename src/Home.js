@@ -41,7 +41,7 @@ function App() {
             <ParticlesBackground></ParticlesBackground>
             <div className = "d-flex twitter-blue justify-content-center align-items-center text-center content-body">
                 <div>
-                    <img src={logo} style={{width:"20%", height:"20%"}}/>
+                    <img src={logo} style={{width:"15%", height:"15%"}}/>
                     <h1 className="title-medium mt-5">saamba</h1>
                     <h2 className="bold">A spotify playlist generator based on your tweets</h2>
                     <div>
@@ -49,11 +49,15 @@ function App() {
                     </div>
                     <div className="text-center">
                         
-                        <Popup trigger={<button className="btn blue" onClick={handleDemo}>          
-                            Make my playlist{" "}
-                        </button>} position="right center" modal>
-    <div className=".popup-content">Popup content here !!</div>
-  </Popup>
+                        <Popup trigger={<button className="btn blue" onClick={handleDemo}> Make my playlist{" "}</button>} position="right center" modal>
+                        {close => 
+                          (<div>
+                            <div className=".popup-content">Playlist has been added to your Spotify account!</div>
+                            <button className="close" onClick={close}>
+                              &times;
+                            </button>
+                          </div>)}
+                       </Popup>
                     </div>
                 </div> 
               
