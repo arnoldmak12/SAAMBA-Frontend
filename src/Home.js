@@ -3,8 +3,8 @@ import './Demo.js';
 import Playlist from './Demo.js'
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import logo from './logo.png';
 import Particles from "react-tsparticles";
-
 
 function App() {
     const [handle, setHandle] = useState(" ");
@@ -40,7 +40,8 @@ function App() {
             <ParticlesBackground></ParticlesBackground>
             <div className = "d-flex twitter-blue justify-content-center align-items-center text-center content-body">
                 <div>
-                <h1 className="title-medium mt-5">saamba</h1>
+                    <img src={logo} style={{width:"20%", height:"20%"}}/>
+                    <h1 className="title-medium mt-5">saamba</h1>
                     <h2 className="bold">A spotify playlist generator based on your tweets</h2>
                     <div>
                         <input className="handle-input" placeholder = "Enter a Twitter handle" onChange = {handleInput}></input>
