@@ -5,6 +5,7 @@ import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import logo from './logo.png';
 import Particles from "react-tsparticles";
+import Popup from 'reactjs-popup';
 
 function App() {
     const [handle, setHandle] = useState(" ");
@@ -21,7 +22,7 @@ function App() {
         //     })
         // })
         // console.log(uris)
-        setClicked(true)
+        //setClicked(true)
     // window.location = "demo";
     };
 
@@ -47,11 +48,15 @@ function App() {
                         <input className="handle-input" placeholder = "Enter a Twitter handle" onChange = {handleInput}></input>
                     </div>
                     <div className="text-center">
-                        <button className="btn blue" onClick={handleDemo}>          
+                        
+                        <Popup trigger={<button className="btn blue" onClick={handleDemo}>          
                             Make my playlist{" "}
-                        </button>
+                        </button>} position="right center" modal>
+    <div>Popup content here !!</div>
+  </Popup>
                     </div>
                 </div> 
+              
                     
             </div>
             
