@@ -4,6 +4,7 @@ import { GridLoader } from "react-spinners";
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import './Home.css';
 import "./Demo.css";
+import Popup from 'reactjs-popup';
 
 var axios = require('axios').default;
 
@@ -69,8 +70,6 @@ function Playlist(props) {
     }}> </Redirect>:
     (
       <div className="d-flex twitter-blue justify-content-center text-center content-body">
-
-
         <div className="playlist-container">
           {/* <h1 className = "playlist-ready">Your playlist is ready!</h1> */}
           <h1 className="title-medium mt-5" style={{ color: "#1ED760" }}>Your playlist is ready!</h1>
@@ -82,9 +81,7 @@ function Playlist(props) {
                   <iframe style={{ display: 'block' }} src={"https://open.spotify.com/embed/track/" + uri.substring(14)} width="100%" height="80" align="right" frameBorder="0"
                     allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; 
         fullscreen; picture-in-picture"></iframe>
-
                 </div>)
-
             }
 
               // uri =  + uri,
@@ -92,7 +89,7 @@ function Playlist(props) {
             )}
           <div class="float-container">
             <div class="float-child">
-              <button className="btn black" onClick={() => { window.location = "/" }}>
+              <button className="btn black" onClick={() => { window.location = "/"; localStorage.removeItem("uris");}}>
                 {" "}
                 Back to Home{" "}
               </button>

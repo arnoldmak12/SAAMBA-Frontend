@@ -12,6 +12,7 @@ var redirect_uri = 'http://localhost:3005/callback';// Or Your redirect uri
 // localStorage = new LocalStorage('./scratch');
 
 var stateKey = 'spotify_auth_state';
+var urisKey = 'uris';
 var app = express();
 
 var generateRandomString = function(length) {
@@ -28,7 +29,8 @@ app.use(express.static(__dirname + '/public'))
 
 app.get('/login', function(req, res) {
     var state = generateRandomString(16);
-    console.log(req.query.uris)
+    var uris = req.query.uris
+    res.cookie(urisKey, uris);
     res.cookie(stateKey, state);
     // your application requests authorization
     var scope = 'playlist-modify-private playlist-modify user-read-private user-read-email user-read-playback-state';
@@ -44,13 +46,13 @@ app.get('/login', function(req, res) {
 
   
   app.get('/callback', function(req, res) {
-
+    
     // your application requests refresh and access tokens
     // after checking the state parameter
-  
     var code = req.query.code || null;
     var state = req.query.state || null;
     var storedState = req.cookies ? req.cookies[stateKey] : null;
+    var storedUris = req.cookies ? req.cookies[urisKey] : null;
     if (state === null || state !== storedState) {
       res.redirect('/#' +
         querystring.stringify({
@@ -76,9 +78,6 @@ app.get('/login', function(req, res) {
   
           var access_token = body.access_token,
           refresh_token = body.refresh_token;
-
-  
-          let user_id = '';
           // use the access token to access the Spotify Web API
           let spotify = axios.create({
             baseURL: 'https://api.spotify.com',
@@ -96,9 +95,7 @@ app.get('/login', function(req, res) {
               name: "Saamba Playlist"
             }).then(res => {
               let playlistId = res.data.id
-              // spotify.post('/v1/playlists/{playlist_id}/tracks', {
-              //   uris: localStorage.getItem("uris").substring(2, storage.length-2)
-              // })
+              spotify.post(`/v1/playlists/${playlistId}/tracks?uris=`+req.cookies[urisKey]).catch(err => {console.log(err)})
               
               
             })
@@ -113,10 +110,9 @@ app.get('/login', function(req, res) {
           // }
 
           // we can also pass the token to the browser to make requests from there
-          res.redirect('http://localhost:3000/demo/#' +
+          res.redirect('http://localhost:3000/demo?' +
             querystring.stringify({
-              access_token: access_token,
-              refresh_token: refresh_token
+              added:true
             }));
         } else {
           res.redirect('/#' +
