@@ -52,7 +52,7 @@ function App() {
                         <Popup trigger={<button className="btn blue" onClick={handleDemo}>          
                             Make my playlist{" "}
                         </button>} position="right center" modal>
-    <div>Popup content here !!</div>
+    <div className=".popup-content">Popup content here !!</div>
   </Popup>
                     </div>
                 </div> 
