@@ -45,8 +45,11 @@
 }
 
 .background{
-  background:linear-gradient(transparent, white);
-  background-color:#1DA1F2;
+  /* background:linear-gradient(transparent, white);
+  background-color:#1DA1F2; */
+  background: radial-gradient(circle, rgba(193, 196, 209, 1) 0%,
+    rgba(3, 3, 29, 1) 100%);
+    height: 100vh;
 }
 
 .title-medium {
@@ -54,7 +57,7 @@
     font-style: normal;
     font-weight: bold;
     font-size: 5rem;
-    color:whitesmoke;
+    color: ghostwhite;
     text-shadow: -5px 5px 0px #000000;
 }
 
@@ -106,7 +109,7 @@
 }
 
 .green:hover{
-  background-color: #1ED760 !important;
+  background-color: #1ED760!important;
   color: black;
 }
 
@@ -121,4 +124,23 @@
   margin: 10px;
   text-align: center;
 }
+
+#particle-canvas {
+  background:linear-gradient(transparent, white);
+  background-color:#1DA1F2;
+  position:fixed !important;
+  left:0;
+  top:0;
+  width:100vw;
+  height:100vh;
+  z-index:-1;
+}
+
+.error{
+  width: 150; 
+  height: 100;
+  padding: 10px;
+}
+
+
 
