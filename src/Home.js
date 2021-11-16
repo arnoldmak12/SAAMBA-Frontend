@@ -9,6 +9,8 @@ import Popup from 'reactjs-popup';
 
 function App() {
     if(localStorage.getItem("uris") != null) {localStorage.removeItem("uris");}
+    if(localStorage.getItem("concepts") != null) {localStorage.removeItem("concepts");}
+    if(localStorage.getItem("tones") != null) {localStorage.removeItem("tones");}
     const [handle, setHandle] = useState(" ");
     const [clicked, setClicked] = useState (false);
     const defInput = "Enter a Twitter handle";
