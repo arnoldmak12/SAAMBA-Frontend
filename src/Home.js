@@ -8,6 +8,7 @@ import Particles from "react-tsparticles";
 import Popup from 'reactjs-popup';
 
 function App() {
+    if(localStorage.getItem("uris") != null) {localStorage.removeItem("uris");}
     const [handle, setHandle] = useState(" ");
     const [clicked, setClicked] = useState (false);
     const defInput = "Enter a Twitter handle";
