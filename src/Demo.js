@@ -40,6 +40,9 @@ function Playlist(props) {
                   setUris(responseJson.trackUris);
                   setConcepts(responseJson.concepts);
                   setTones(responseJson.tones);
+                  localStorage.setItem("uris", JSON.stringify(uris));
+                  localStorage.setItem("tones", JSON.stringify(tones)); 
+                  localStorage.setItem("concepts", JSON.stringify(concepts));
                   setLoading(false);
             }else {
               setError(true);
@@ -112,9 +115,6 @@ function Playlist(props) {
 
             <div class="float-child">
               <button className="btn green" onClick={() => { 
-              localStorage.setItem("uris", JSON.stringify(uris));
-              localStorage.setItem("tones", JSON.stringify(tones)); 
-              localStorage.setItem("concepts", JSON.stringify(concepts));
               var link = "http://localhost:3005/login?uris=" + uris;
               window.location = link
               axios.get(link);
