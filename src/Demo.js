@@ -16,15 +16,12 @@ function Playlist(props) {
   const storageUris = localStorage.getItem("uris");
   const storageConcepts = localStorage.getItem("concepts");
   const storageTones = localStorage.getItem("tones");
-  const storageFollowers = localStorage.getItem("followers");
 
   const [emptyStorage, setEmptyStorage] = useState(storageUris ==null);
 
   const [uris, setUris] = useState(emptyStorage? [] : storageUris.substring(2, storageUris.length-2).split('","'));
-  
   const [concepts, setConcepts] = useState([])
   const [tones, setTones] = useState([])
-  const [followers, setFollowers] = useState([])
  
   const [error, setError] = useState(false);
 
@@ -42,7 +39,6 @@ function Playlist(props) {
                 setUris(responseJson.trackUris);
                 setConcepts(responseJson.concepts);
                 setTones(responseJson.tones);
-                setFollowers(responseJson.followers);
                 setLoading(false);
               }
               else {
