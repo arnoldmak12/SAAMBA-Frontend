@@ -184,3 +184,17 @@
   border-radius: 18px;
   border: 1px solid #cfcece;
 }
+
+.top3{
+  font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    color: #1ED760;
+    text-shadow: -1px 1px 0px #000000;
+}
+
+.top3content{
+  font-family: Poppins;
+  font-size: 25px;
+}

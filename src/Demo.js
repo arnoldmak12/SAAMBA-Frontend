@@ -20,8 +20,8 @@ function Playlist(props) {
   const [emptyStorage, setEmptyStorage] = useState(storageUris ==null);
 
   const [uris, setUris] = useState(emptyStorage? [] : storageUris.substring(2, storageUris.length-2).split('","'));
-  const [concepts, setConcepts] = useState([])
-  const [tones, setTones] = useState([])
+  const [concepts, setConcepts] = useState(emptyStorage? [] : storageConcepts.substring(2, storageConcepts.length-2).split('","'))
+  const [tones, setTones] = useState(emptyStorage? [] : storageTones.substring(2, storageTones.length-2).split('","'))
  
   const [error, setError] = useState(false);
 
@@ -35,17 +35,16 @@ function Playlist(props) {
         await fetch((url + handle), { mode: 'cors' }).then((res) => {
           return fetch(url + handle).then((response) => response.json())
             .then((responseJson) => {
+              console.log(res)
               if (res.status == 200) {
-                setUris(responseJson.trackUris);
-                setConcepts(responseJson.concepts);
-                setTones(responseJson.tones);
-                setLoading(false);
-              }
-              else {
-                setError(true);
-                setLoading(false);
-              }
-            })
+                  setUris(responseJson.trackUris);
+                  setConcepts(responseJson.concepts);
+                  setTones(responseJson.tones);
+                  setLoading(false);
+            }else {
+              setError(true);
+              setLoading(false);
+            }})
             .catch((error) => {
               console.error(error);
             })
@@ -85,8 +84,7 @@ function Playlist(props) {
       <div className="d-flex twitter-blue justify-content-center text-center content-body">
         <div className="playlist-container">
           {/* <h1 className = "playlist-ready">Your playlist is ready!</h1> */}
-          <h1 className="title-medium mt-5" style={{ color: "#1ED760" }}>Your playlist is ready!</h1>
-
+          <h1 className="title-medium mt-5" style={{ color: "#1ED760" }}>Your playlist is ready!</h1> 
           {
             uris.map((uri) => {
               return (
@@ -102,7 +100,11 @@ function Playlist(props) {
             )}
           <div class="float-container">
             <div class="float-child">
-              <button className="btn black" onClick={() => { window.location = "/"; localStorage.removeItem("uris");}}>
+              <button className="btn black" onClick={() => { 
+                window.location = "/"; 
+                localStorage.removeItem("uris");
+                localStorage.removeItem("tones");
+                localStorage.removeItem("concepts");}}>
                 {" "}
                 Back to Home{" "}
               </button>
@@ -110,7 +112,9 @@ function Playlist(props) {
 
             <div class="float-child">
               <button className="btn green" onClick={() => { 
-              localStorage.setItem("uris", JSON.stringify(uris)); 
+              localStorage.setItem("uris", JSON.stringify(uris));
+              localStorage.setItem("tones", JSON.stringify(tones)); 
+              localStorage.setItem("concepts", JSON.stringify(concepts));
               var link = "http://localhost:3005/login?uris=" + uris;
               window.location = link
               axios.get(link);
@@ -119,17 +123,30 @@ function Playlist(props) {
                 Add to Spotify{" "}
               </button>
             </div>
-          </div>
-          {
-            concepts.map((concept) => {
-              return (
-                <h1>{concept}</h1>
-              )
-            }
-
+            <span class = "top3"> Top 3 Concepts: </span>
+            {
+              concepts.map((concept) => {               
+                return  <span class = "top3content">
+                  {concept + " "} 
+                </span>
+              }
               // uri =  + uri,
 
             )}
+          <div>
+          <span class = "top3"> Top 3 Tones: </span>
+            {
+              tones.map((tone) => {               
+                return  <span class = "top3content">
+                  {tone + " "} 
+                </span>
+              }
+              // uri =  + uri,
+            )}
+          </div>
+          </div>
+          
+            
 {/* {added?
                         <Popup position="right center" modal>
                         {close => 
