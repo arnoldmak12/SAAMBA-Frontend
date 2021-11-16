@@ -12,13 +12,25 @@ function Playlist(props) {
   let [loading, setLoading] = useState(true);
   let handle = props.location.state!=null ? props.location.state.handle : "";
   const url = "http://localhost:8080/getPlaylist/";
-  const storage = localStorage.getItem("uris");
-  const [emptyStorage, setEmptyStorage] = useState(storage ==null);
-  const [uris, setUris] = useState(emptyStorage? [] : storage.substring(2, storage.length-2).split('","'));
+
+  const storageUris = localStorage.getItem("uris");
+  const storageConcepts = localStorage.getItem("concepts");
+  const storageTones = localStorage.getItem("tones");
+  const storageFollowers = localStorage.getItem("followers");
+
+  const [emptyStorage, setEmptyStorage] = useState(storageUris ==null);
+
+  const [uris, setUris] = useState(emptyStorage? [] : storageUris.substring(2, storageUris.length-2).split('","'));
+  
+  const [concepts, setConcepts] = useState([])
+  const [tones, setTones] = useState([])
+  const [followers, setFollowers] = useState([])
+ 
   const [error, setError] = useState(false);
+
   let params = new URLSearchParams(document.location.search.substring(1));
   let added1 = params.get("added");
-  const [added, setAdded] = useState(added1=="true")
+  const [added, setAdded] = useState(added1==="true")
   useEffect(() => {
     // var result = "";
     if(emptyStorage){
@@ -28,6 +40,9 @@ function Playlist(props) {
             .then((responseJson) => {
               if (res.status == 200) {
                 setUris(responseJson.trackUris);
+                setConcepts(responseJson.concepts);
+                setTones(responseJson.tones);
+                setFollowers(responseJson.followers);
                 setLoading(false);
               }
               else {
@@ -108,10 +123,18 @@ function Playlist(props) {
                 Add to Spotify{" "}
               </button>
             </div>
-
-
           </div>
-{added?
+          {
+            concepts.map((concept) => {
+              return (
+                <h1>{concept}</h1>
+              )
+            }
+
+              // uri =  + uri,
+
+            )}
+{/* {added?
                         <Popup position="right center" modal>
                         {close => 
                           (<div>
@@ -121,9 +144,8 @@ function Playlist(props) {
                             </button>
                           </div>)}
                        </Popup>:""
-}
+} */}
         </div>
-
       </div>
 
       // 
